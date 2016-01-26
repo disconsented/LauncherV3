@@ -7,8 +7,13 @@
 
 .idea/
 target/
+build/
+out/
 *.iml
+*.ipr
+*.iws
 
+.gradle/
 module_launcherv3.xml
 launcherv3.xml
 launcherv3.properties

@@ -1,0 +1,9 @@
+[submodule "LauncherCore"]
+	path = LauncherCore
+	url = https://github.com/disconsented/LauncherCore
+[submodule "LauncherUICore"]
+	path = LauncherUICore
+	url = https://github.com/disconsented/LauncherUICore
+[submodule "MinecraftCore"]
+	path = MinecraftCore
+	url = https://github.com/disconsented/MinecraftCore

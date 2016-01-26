@@ -1,0 +1,1 @@
+include ":LauncherUICore",":LauncherCore", ":MinecraftCore"
