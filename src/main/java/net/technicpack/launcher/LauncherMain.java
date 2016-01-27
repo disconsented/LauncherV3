@@ -91,6 +91,7 @@ import net.technicpack.utilslib.OperatingSystem;
 import net.technicpack.utilslib.Utils;
 import org.apache.commons.io.FileUtils;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import sun.misc.ClassLoaderUtil;
 
 import javax.swing.*;
@@ -187,6 +188,7 @@ public class LauncherMain {
             //This is probably a debug build or something, build number is invalid
         }
 
+        //TODO: Update token here
         Relauncher launcher = new TechnicRelauncher(new HttpUpdateStream("http://api.technicpack.net/launcher/"), settings.getBuildStream()+"4", build, directories, resources, params);
 
         try {
@@ -270,6 +272,11 @@ public class LauncherMain {
 
         Utils.getLogger().info("OS: " + System.getProperty("os.name").toLowerCase(Locale.ENGLISH));
         Utils.getLogger().info("Identified as "+ OperatingSystem.getOperatingSystem().getName());
+        String date = ""+new LocalDate().toDateTimeAtCurrentTime().getMillis();
+        if(date.length() > 10){
+            date = date.substring(0,10);
+        }
+        Utils.getLogger().info("Current Time: " + date);
 
         final SplashScreen splash = new SplashScreen(resources.getImage("launch_splash.png"), 0);
         Color bg = LauncherFrame.COLOR_FORMELEMENT_INTERNAL;
