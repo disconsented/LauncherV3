@@ -188,8 +188,7 @@ public class LauncherMain {
             //This is probably a debug build or something, build number is invalid
         }
 
-        //TODO: Update token here
-        Relauncher launcher = new TechnicRelauncher(new HttpUpdateStream("http://api.technicpack.net/launcher/"), settings.getBuildStream()+"4", build, directories, resources, params);
+        Relauncher launcher = new TechnicRelauncher(new HttpUpdateStream("@URLUPDATE@"), settings.getBuildStream()+"4", build, directories, resources, params);
 
         try {
             if (launcher.runAutoUpdater())
@@ -355,7 +354,7 @@ public class LauncherMain {
         SettingsFactory.migrateSettings(settings, packStore, directories, users, migrators);
 
         PackLoader packList = new PackLoader(directories, packStore, packInfoRepository);
-        ModpackSelector selector = new ModpackSelector(resources, packList, new SolderPackSource("http://solder.technicpack.net/api/", solder), solder, platform, platformSearch, iconRepo);
+        ModpackSelector selector = new ModpackSelector(resources, packList, new SolderPackSource("@SOLDERURL@", solder), solder, platform, platformSearch, iconRepo);//TODO: Replace the solder URL here default packs
         selector.setBorder(BorderFactory.createEmptyBorder());
         userModel.addAuthListener(selector);
 

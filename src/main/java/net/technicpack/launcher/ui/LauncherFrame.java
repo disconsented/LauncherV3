@@ -633,7 +633,7 @@ public class LauncherFrame extends DraggableFrame implements IRelocalizableResou
         buildCtrl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DesktopUtils.browseUrl("https://apexminecrafthosting.com/partners/technic");
+                DesktopUtils.browseUrl("@SPONSORLINK@");
             }
         });
         footer.add(buildCtrl);
