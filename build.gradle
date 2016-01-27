@@ -31,30 +31,32 @@ sourceSets {
 }
 
 
-
+/*
 shadowJar {
   dependencies {
     include(dependency('org.ccil.cowan.tagsoup:.*'))
     include(dependency('net.technicpack:.*'))
     include(dependency('org.jdom:jdom'))
     include(dependency('rome:rome'))
+    include(dependency('com.beust:.*'))
+    include(dependency('com.google:.*'))
+    include(dependency('org.eclipse:.*'))
   }
-}
+}*/
 
 repositories {
     maven { url "https://jitpack.io" }
     maven { url "http://repo.maven.apache.org/maven2" }
 }
-dependencies {
-    compile fileTree(dir: 'lib', include: '*.jar')
+dependencies {    
     compile group: 'com.beust', name: 'jcommander', version:'1.6'
     compile group: 'com.google.code.gson', name: 'gson', version:'2.3.1'
     compile group: 'commons-codec', name: 'commons-codec', version:'1.8'
     compile group: 'commons-io', name: 'commons-io', version:'2.4'
-    compile group: 'joda-time', name: 'joda-time', version:'2.4'
-    compile project (':LauncherUiCore')
+    compile group: 'joda-time', name: 'joda-time', version:'2.4'    
     compile project (':LauncherCore')
     compile project (':MinecraftCore')
+    compile project (':LauncherUICore')    
     compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.1'
     compile group: 'org.apache.maven', name: 'maven-aether-provider', version:'3.2.5'
     compile group: 'org.eclipse.aether', name: 'aether-connector-basic', version:'1.0.0.v20140518'
@@ -65,4 +67,5 @@ dependencies {
     compile group: 'org.xhtmlrenderer', name: 'flying-saucer-core', version:'9.0.6'
     compile group: 'org.yaml', name: 'snakeyaml', version:'1.11'
     runtime group: 'org.ccil.cowan.tagsoup', name: 'tagsoup', version:'1.2.1'
+ 
 }
