@@ -8,7 +8,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'application'
 
 group = 'net.technicpack'
 version = '4.0-0'
@@ -23,7 +22,7 @@ jar {
         attributes 'Main-Class': 'net.technicpack.launcher.LauncherMain'
     }
 }
-mainClassName = 'net.technicpack.launcher.LauncherMain'
+
 sourceSets {
     main {
         java {
@@ -37,43 +36,11 @@ sourceSets {
 
 import org.apache.tools.ant.filters.ReplaceTokens
 
-task sourcesForRelease(type: Copy) {
-    from 'src/main/java/net/technicpack/launcher/ui/components/discover/DiscoverInfoPanel.java'
-    into 'build/adjustedSrc'
-    filter(ReplaceTokens, tokens: ['DISCOVERURL' : urlDiscover])
-
-    from 'LauncherCore/src/main/java/net/technicpack/platform/http/HttpPlatformAPI.java'
-    into 'build/adjustedSrc'
-    filter(ReplaceTokens, tokens: ['NEWSURL' : urlNews])
-
-    from 'src/main/java/net/technicpack/launcher/LauncherMain.java'
-    into 'build/adjustedSrc'
-    filter(ReplaceTokens, tokens: ['SOLDERURL' : urlSolder])
-
-    from 'src/main/java/net/technicpack/launcher/ui/components/discover/DiscoverInfoPanel.java'
-    into 'build/adjustedSrc'
-    filter(ReplaceTokens, tokens: ['SPONSORLINK' : urlSponsor])
-
-    from 'src/main/java/net/technicpack/launcher/LauncherMain.java'
-    into 'build/adjustedSrc'
-    filter(ReplaceTokens, tokens: ['URLUPDATE' : urlVersion])
-}
-
-task versioning(type: Copy){
-    from 'src/main/resources/version'
-    into 'build/classes/main/net/technicpack/launcher/resources'
-    expand(buildNumber : buildNumber)
-}
-
-task compileForRelease(type: JavaCompile, dependsOn: sourcesForRelease) {
-    source = sourcesForRelease.destinationDir
-    classpath = sourceSets.main.runtimeClasspath
-    destinationDir = file('build/adjustedClasses')
-}
-
-task copyClasses(type: Copy, dependsOn: compileForRelease){
-    from 'build/adjustedClasses'
-    into 'build/classes/main'
+processResources {
+    from (sourceSets.main.java) {
+        include 'net/technicpack/launcher/ui/components/discover/DiscoverInfoPanel.java'
+        filter(ReplaceTokens, tokens: ['DISCOVERURL' : urlDiscover])
+    }
 }
 
 task copyResources(type: Copy){//Work around for https://issues.gradle.org/browse/GRADLE-2213
@@ -81,7 +48,7 @@ task copyResources(type: Copy){//Work around for https://issues.gradle.org/brows
     into 'build/classes/main/net/technicpack/launcher/resources'
 }
 
-build.dependsOn(copyResources, copyClasses, versioning)
+build.dependsOn(copyResources)
 
 
 
