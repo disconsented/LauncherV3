@@ -8,7 +8,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'application'
+
 
 group = 'net.technicpack'
 version = '4.0-0'
@@ -23,7 +23,17 @@ jar {
         attributes 'Main-Class': 'net.technicpack.launcher.LauncherMain'
     }
 }
-mainClassName = 'net.technicpack.launcher.LauncherMain'
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile){
+    options.encoding = 'UTF-8'
+}
+
+allprojects{
+    apply plugin: 'java'
+}
+
 sourceSets {
     main {
         java {
@@ -86,8 +96,6 @@ task wrapper(type: Wrapper) {
 }
 
 build.dependsOn(copyResources, copyClasses, versioning)
-
-
 
 repositories {
     maven { url "https://jitpack.io" }
