@@ -81,6 +81,10 @@ task copyResources(type: Copy){//Work around for https://issues.gradle.org/brows
     into 'build/classes/main/net/technicpack/launcher/resources'
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
+}
+
 build.dependsOn(copyResources, copyClasses, versioning)
 
 
