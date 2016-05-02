@@ -18,6 +18,8 @@ description = """Technic Launcher"""
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
+jar.enabled = false;
+
 jar {
     manifest {
         attributes 'Main-Class': 'net.technicpack.launcher.LauncherMain'
@@ -96,6 +98,7 @@ task wrapper(type: Wrapper) {
 }
 
 build.dependsOn(copyResources, copyClasses, versioning)
+build.finalizedBy(shadowJar)
 
 repositories {
     maven { url "https://jitpack.io" }
@@ -121,4 +124,8 @@ dependencies {
     compile group: 'org.yaml', name: 'snakeyaml', version:'1.11'
     runtime group: 'org.ccil.cowan.tagsoup', name: 'tagsoup', version:'1.2.1'
  
+}
+
+shadowJar{
+    archiveName = "launcher-${version}.jar"
 }
