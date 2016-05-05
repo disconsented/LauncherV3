@@ -4,13 +4,20 @@ Fork of the V3 Technic Launcher that allows for replacing the branding, default 
 
 Building
 ========
+linux:
 ```bash
 git clone --recursive https://github.com/disconsented/LauncherV3
 cd LauncherV3
 chmod +x gradlew
-./gradlew build
+./gradlew clean build
 ```
-To rebuild just type `./gradlew build` again.
+Windows:
+```
+git clone --recursive https://github.com/disconsented/LauncherV3
+cd LauncherV3
+gradlew clean build
+```
+To rebuild just type `./gradlew build`/`gradlew clean build` again.
 
 Most values are adjusted within gradle.properties and branding is done by replacing the files inside /src/main/resources/.
 
